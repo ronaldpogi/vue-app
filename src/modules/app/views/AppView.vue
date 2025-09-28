@@ -2,10 +2,11 @@
   <div class="bg-brand p-10 min-h-screen">
     <div class="max-w-7xl mx-auto px-2">
       <ul class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 p-2 xl:p-5">
+        <router-link to="saas/login">
         <li
-          class="relative bg-brand-white flex flex-col justify-between border border-brand-light hover:border-brand-highlight cursor-pointer"
+          class="reveal-hero-img relative bg-brand-white flex flex-col justify-between border border-brand-light hover:border-brand-highlight cursor-pointer"
         >
-          <a class="relative" href="#">
+          <div class="relative">
             <div class="relative w-full aspect-video">
               <img
                 class="rounded w-full h-full object-cover"
@@ -15,14 +16,14 @@
               />
 
               <div class="bottom-0 p-4 bg-gradient-to-b from-brand-dark to-brand text-brand-white">
-                <h2 class="text-xl font-semibold">AUTHENTICATION</h2>
+                <h2 class="text-xl font-semibold">SaaS</h2>
               </div>
             </div>
-          </a>
+          </div>
 
           <div class="flex flex-col justify-beetween gap-1 px-4 py-2">
             <p class="text-gray-600 two-lines">
-              A simple Authentication using laravel & PHP as server side language
+              A simple Multi Tenant Application using laravel as server side language
             </p>
 
             <ul class="flex flex-wrap items-center justify-start text-sm">
@@ -48,11 +49,15 @@
             </ul>
           </div>
         </li>
+        </router-link>
       </ul>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useGsapReveal } from '@/composables/useGsapAnimation'
+useGsapReveal()
+</script>
 
 <style></style>

@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
+import { useGsapReveal } from '@/composables/useGsapAnimation'
 import projects from '../data/projects'
 import testimonials from '../data/testimonials'
 import tech from '../data/tech'
@@ -12,99 +10,7 @@ const typedTestimonials = testimonials
 const typedTech = tech
 const typedArticles = articles
 
-const RESPONSIVE_WIDTH = 1024
-
-// state
-const isHeaderCollapsed = ref<boolean>(window.innerWidth < RESPONSIVE_WIDTH)
-const collapseBtn = ref<HTMLButtonElement | null>(null)
-const collapseHeaderItems = ref<HTMLDivElement | null>(null)
-
-function toggleHeader(): void {
-  if (!collapseBtn.value || !collapseHeaderItems.value) return
-
-  if (isHeaderCollapsed.value) {
-    collapseHeaderItems.value.classList.add('opacity-100')
-    collapseHeaderItems.value.style.width = '60vw'
-    collapseBtn.value.classList.remove('bi-list')
-    collapseBtn.value.classList.add('bi-x', 'max-lg:tw-fixed')
-    isHeaderCollapsed.value = false
-
-    setTimeout(() => window.addEventListener('click', onHeaderClickOutside), 1)
-  } else {
-    collapseHeaderItems.value.classList.remove('opacity-100')
-    collapseHeaderItems.value.style.width = '0vw'
-    collapseBtn.value.classList.remove('bi-x', 'max-lg:tw-fixed')
-    collapseBtn.value.classList.add('bi-list')
-    isHeaderCollapsed.value = true
-    window.removeEventListener('click', onHeaderClickOutside)
-  }
-}
-
-function onHeaderClickOutside(e: MouseEvent): void {
-  if (collapseHeaderItems.value && !collapseHeaderItems.value.contains(e.target as Node)) {
-    toggleHeader()
-  }
-}
-
-function responsive(): void {
-  if (!collapseHeaderItems.value) return
-
-  if (window.innerWidth > RESPONSIVE_WIDTH) {
-    collapseHeaderItems.value.style.width = ''
-  } else {
-    isHeaderCollapsed.value = true
-  }
-}
-
-onMounted(() => {
-  window.addEventListener('resize', responsive)
-
-  // GSAP setup
-  gsap.registerPlugin(ScrollTrigger)
-
-  // Set initial hidden state instead of animating them away
-  gsap.set('.reveal-hero-text', { opacity: 0, y: '100%' })
-  gsap.set('.reveal-hero-img', { opacity: 0, y: '100%' })
-  gsap.set('.reveal-up', { opacity: 0, y: '100%' })
-
-  // Animate into view when component mounts
-  gsap.to('.reveal-hero-text', {
-    opacity: 1,
-    y: '0%',
-    duration: 0.8,
-    stagger: 0.5,
-  })
-
-  gsap.to('.reveal-hero-img', {
-    opacity: 1,
-    y: '0%',
-    duration: 0.8,
-  })
-
-  // Reveal sections on scroll
-  const sections: HTMLElement[] = gsap.utils.toArray('section') as HTMLElement[]
-  sections.forEach((sec) => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: sec,
-          start: '10% 80%',
-          end: '20% 90%',
-        },
-      })
-      .to(sec.querySelectorAll('.reveal-up'), {
-        opacity: 1,
-        duration: 0.8,
-        y: '0%',
-        stagger: 0.2,
-      })
-  })
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', responsive)
-  window.removeEventListener('click', onHeaderClickOutside)
-})
+useGsapReveal()
 </script>
 
 <template>

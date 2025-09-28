@@ -1,3 +1,48 @@
+# TEST
+
+```yml
+
+name: 🧪 Build & Test Vue App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request: {}
+
+jobs:
+  test:
+    name: 🐳 Build & Test Vue App
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Install Dependencies
+        run: npm install
+        working-directory: ./
+
+      - name: 🏗️ Run Build
+        run: npm run build
+        working-directory: ./
+
+      - name: ✅ Run Tests
+        run: npm run test --if-present
+        working-directory: ./
+
+      - name: 🧹 Clean Up
+        if: always()
+        run: rm -rf node_modules dist
+
+
+```
+
+
+# PROD
+
+```yml
+
 name: 🚀 Build & Deploy Vue App to AWS EC2
 
 on:
@@ -74,3 +119,6 @@ jobs:
       - name: 🧹 Cleanup SSH Key
         if: always()
         run: rm -f key.pem
+
+
+```

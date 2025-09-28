@@ -3,12 +3,14 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-brand-light: #f3f4f6; /* light background */
+  --color-brand-light: #D1D5DB; /* light background */
   --color-brand: #374151; /* default brand (dark gray) */
   --color-brand-dark: #111827; /* darkest gray for headings */
   --color-brand-accent: #2563eb; /* accent blue */
   --color-brand-highlight: #f59e0b; /* highlight orange */
   --color-brand-white: #ffffff; /* pure white */
+  --color-brand-green: #10B981; /* success green */
+  --color-brand-red: #EF4444;   /* error red */
 }
 
 :root {
