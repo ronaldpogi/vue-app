@@ -1,4 +1,13 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { onMounted } from 'vue';
+import { useSaasDashboardStore } from '../../store/saasDashboardStore';
+const saasDashboardStore = useSaasDashboardStore()
+
+onMounted(() => {
+  saasDashboardStore.getTenants()
+  saasDashboardStore.getMembers()
+})
+</script>
 <template>
   <div>
     <h3 class="text-3xl font-medium text-gray-700">DASHBOARD</h3>
@@ -12,8 +21,8 @@
             </div>
 
             <div class="mx-5">
-              <h4 class="text-2xl font-semibold text-gray-700">8,282</h4>
-              <div class="text-gray-500">New Users</div>
+              <h4 class="text-2xl font-semibold text-gray-700">{{ saasDashboardStore.tenants.count }}</h4>
+              <div class="text-brand-dark text-sm">TENANTS</div>
             </div>
           </div>
         </div>
@@ -25,24 +34,12 @@
             </div>
 
             <div class="mx-5">
-              <h4 class="text-2xl font-semibold text-gray-700">200,521</h4>
-              <div class="text-gray-500">Total Orders</div>
+              <h4 class="text-2xl font-semibold text-gray-700">{{ saasDashboardStore.members.count }}</h4>
+              <div class="text-gray-500">Users</div>
             </div>
           </div>
         </div>
 
-        <div class="w-full px-6 mt-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
-          <div class="flex items-center px-5 py-6 bg-white shadow-sm">
-            <div class="p-3 bg-pink-600 bg-opacity-75 rounded-full">
-              <Icon class="text-white" icon="solar:bag-bold" width="30" height="30" />
-            </div>
-
-            <div class="mx-5">
-              <h4 class="text-2xl font-semibold text-gray-700">215,542</h4>
-              <div class="text-gray-500">Available Products</div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import { useGsapReveal } from '@/composables/useGsapAnimation';
+useGsapReveal()
+</script>
 <template>
   <div
     class="text-gray-600 body-font h-screen flex bg-brand bg-svg-constellation-gray-100 relative"
@@ -6,7 +10,7 @@
       <div class="lg:w-2/3 w-full animate-fade-in-down">
         <!-- Change the heading text -->
         <h1
-          class="md:text-6xl text-3xl mb-8 font-bold text-brand-highlight tracking-tight leading-tight"
+          class="reveal-hero-text md:text-6xl text-3xl mb-8 font-bold text-brand-highlight tracking-tight leading-tight"
         >
           Hello, I'm Ronald John.
         </h1>
@@ -29,5 +33,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup></script>

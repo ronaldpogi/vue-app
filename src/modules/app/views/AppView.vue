@@ -22,9 +22,8 @@ useGsapReveal()
             <div class="relative w-full aspect-video">
               <img
                 class="w-full h-full object-cover"
-                src="https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxrZXlib2FyZHxlbnwwfDB8fHwxNjk5NTI1MDAzfDA&ixlib=rb-4.0.3&q=80&w=1080"
+                :src="x.img"
                 alt="Writey A.I"
-                loading="lazy"
               />
 
               <div class="bottom-0 p-4 bg-gradient-to-b from-brand-dark to-brand text-brand-white">

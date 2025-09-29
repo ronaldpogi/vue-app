@@ -74,17 +74,17 @@ const { isOpen } = useSaasSidebar()
           >
             <a
               href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+              class="block px-4 py-2 text-xs text-gray-700 hover:bg-indigo-600 hover:text-white"
               >PROFILE</a
             >
             <a
               href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+              class="block px-4 py-2 text-xs text-gray-700 hover:bg-indigo-600 hover:text-white"
               >PRODUCTS</a
             >
             <a
               @click="saasAuthStore.logout"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white cursor-pointer"
+              class="block px-4 py-2 text-xs text-gray-700 hover:bg-indigo-600 hover:text-white cursor-pointer"
               >LOG OUT</a
             >
           </div>
