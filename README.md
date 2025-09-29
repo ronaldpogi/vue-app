@@ -4,14 +4,14 @@
 
 ```sh
 docker-compose down app
-docker-compose up app --force-recreate
+docker-compose up app
 ```
 
 - Production (built + Nginx)
 
 ```sh
 docker-compose down nginx
-docker-compose up nginx --force-recreate
+docker-compose up nginx
 ```
 
 # DOCKER DATA CLEAR
