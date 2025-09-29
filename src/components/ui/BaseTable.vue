@@ -5,13 +5,13 @@
     </h2>
 
     <!-- Filters -->
-    <div class="flex flex-col mt-3 sm:flex-row gap-2" v-if="showFilters">
+    <div class="flex flex-col mt-3 sm:flex-row gap-1" v-if="showFilters">
       <div class="flex">
         <!-- Page Size -->
         <select
           v-model="localPageSize"
           @change="emitChange"
-          class="block text-[13px] w-full h-full px-4 py-2 pr-5 text-gray-700 bg-white border border-gray-400 focus:outline-none"
+          class="block text-[13px] w-full px-2 py-2 text-gray-700 bg-white border border-gray-400 focus:outline-none"
         >
           <option v-for="s in [5, 10, 20]" :key="s" :value="s">{{ s }}</option>
         </select>
@@ -30,13 +30,13 @@
           v-model="search"
           @input="debounceEmit"
           placeholder="SEARCH"
-          class="text-[13px] block w-full h-full px-4 pr-8 pl-8 text-gray-700 bg-white border border-gray-400 focus:outline-none"
+          class="text-[13px] py-2 block w-full h-full px-4 pr-8 pl-8 text-gray-700 bg-white border border-gray-400 focus:outline-none"
         />
       </div>
 
       <div class="flex p">
          <BaseButton
-            class="w-auto px-3 text-[12px] font-semibold text-center text-white bg-brand-green focus:outline-none transition-transform hover:scale-110"
+            class="w-auto px-3 text-[12px] py-2 font-semibold text-center text-white bg-brand-green focus:outline-none transition-transform hover:scale-110"
             label="CREATE"
             type="button"
             :loading="loading"
