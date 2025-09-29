@@ -11,7 +11,7 @@ const handleLogin = async () => {
 </script>
 
 <template>
-  <div class="flex items-center justify-center h-screen px-6 bg-gray-200">
+  <div class="flex items-center justify-center h-screen px-6 bg-brand">
     <div class="w-full max-w-sm p-6 bg-white shadow-md">
       <div class="flex items-center justify-center">
         <!-- YOU CAN ADD LOGO HERE -->
