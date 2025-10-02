@@ -1,8 +1,15 @@
 <template>
   <div>
     <form class="mt-4 space-y-5" @submit.prevent="handleSubmit">
+       <BaseMultiSelectGroup
+        label="ROLES"
+        v-model="saasUserStore.userForm.role_ids"
+        :options="saasOptionStore.roleOptions"
+        :error="saasUserStore.errors.role_ids"
+      />
       <!-- First & Last Name -->
       <div class="flex gap-5">
+
         <BaseInputGroup
           label="FIRST NAME"
           v-model="saasUserStore.userForm.first_name"
@@ -69,7 +76,11 @@
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseInputGroup from '@/components/ui/BaseInputGroup.vue'
 import { useSaasUserStore } from '../../store/saasUserStore'
+import BaseMultiSelectGroup from '@/components/ui/BaseMultiSelectGroup.vue';
+import { useSaasOptionStore } from '../../store/saasOptionStore';
+import { onMounted } from 'vue';
 
+const saasOptionStore = useSaasOptionStore()
 const saasUserStore = useSaasUserStore()
 
 const emit = defineEmits<{ (e: 'submit'): void }>()
@@ -77,4 +88,8 @@ const emit = defineEmits<{ (e: 'submit'): void }>()
 const handleSubmit = () => {
   emit('submit')
 }
+
+onMounted(() => {
+  saasOptionStore.getRoleOptions()
+})
 </script>

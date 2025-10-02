@@ -21,6 +21,7 @@ export const useSaasUserStore = defineStore('SaasUser', () => {
     email: '',
     phone: '',
     address: '',
+    role_ids: [],
     password: '',
     password_confirmation: '',
   })
@@ -86,7 +87,7 @@ export const useSaasUserStore = defineStore('SaasUser', () => {
     try {
       errors.value = {}
       const { data } = await saasUserService.update(id, userForm)
-      const index = users.value.findIndex((e) => e.id === id)
+      const index = users.value.findIndex((e: any) => e.id === id)
       if (index !== -1) users.value[index] = data.data
       return true
     } catch (err: any) {
@@ -101,7 +102,7 @@ export const useSaasUserStore = defineStore('SaasUser', () => {
     loading.value = true
     try {
       await saasUserService.destroy(id)
-      users.value = users.value.filter((e) => e.id !== id)
+      users.value = users.value.filter((e: any) => e.id !== id)
     } catch (err: any) {
       console.error(err)
     } finally {

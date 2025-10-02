@@ -16,16 +16,15 @@ export interface SaasRegisterFormInterface {
 
 
 export interface SaasUserInterface {
-  id?: number // optional, usually auto-generated
-  tenant_id: number
+  id?: string
+  tenant_id: string
   first_name: string
   last_name: string
   email: string
   phone?: string | null
   address?: string | null
-  password?: string // optional (usually not returned by API)
-  created_at?: string // timestamps from Laravel
-  updated_at?: string
+  roles: string[];
+  permissions: string[]
 }
 
 export interface SaasUserForm {
@@ -34,6 +33,7 @@ export interface SaasUserForm {
   email: string
   phone: string | number
   address: string
+  role_ids: [],
   password: string
   password_confirmation: string
 }
@@ -48,4 +48,9 @@ export interface SaasParamsInterface {
   page: number
   pageSize: number
   search: string
+}
+
+export interface SaasOptionsInterface {
+  id: string
+  name: string
 }

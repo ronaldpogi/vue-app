@@ -36,18 +36,24 @@ const router = createRouter({
   routes,
 })
 
-// ✅ Global guard checks `meta.requiresAuth`
-router.beforeEach((to, from, next) => {
+router.beforeEach((to) => {
   const saasAuthStore = useSaasAuthStore()
 
-  if (to.meta.requiresSaasAuth && !saasAuthStore.isAuthenticated) {
-    next({ name: 'SaasLogin' }) // redirect to SaaS login
-  }
-  if ((to.name === 'SaasLogin' || to.name === 'SaasRegister') && saasAuthStore.isAuthenticated) {
-    next({ name: 'SaasDashboard' })
+  const requiredRole = to.meta.role as string | undefined
+
+  if (requiredRole && !saasAuthStore.hasRole(requiredRole)) {
+    return { name: 'AppView' }
   }
 
-  next()
+  if (to.meta.requiresSaasAuth && !saasAuthStore.isAuthenticated) {
+    return { name: 'SaasLogin' }
+  }
+
+  if ((to.name === 'SaasLogin' || to.name === 'SaasRegister') && saasAuthStore.isAuthenticated) {
+    return { name: 'SaasDashboard' }
+  }
+
+  return true // ✅ allow navigation
 })
 
 export default router

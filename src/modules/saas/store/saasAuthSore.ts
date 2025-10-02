@@ -11,6 +11,9 @@ export const useSaasAuthStore = defineStore('auth', () => {
   const loading = ref(false)
   const errors = ref<any>({})
 
+  const hasRole = (role: string) => user.value?.roles?.includes(role) ?? false
+  const hasPermission = (perm: string) => user.value?.permissions?.includes(perm) ?? false
+
   const registerForm = reactive<SaasRegisterFormInterface>({
     email: '',
     password: '',
@@ -83,6 +86,12 @@ export const useSaasAuthStore = defineStore('auth', () => {
     router.push('login')
   }
 
+  const init = async () => {
+    if (token.value && !user.value) {
+      await fetchUser()
+    }
+  }
+
   return {
     isAuthenticated: computed(() => !!token.value),
     token,
@@ -91,9 +100,12 @@ export const useSaasAuthStore = defineStore('auth', () => {
     errors,
     registerForm,
     loginForm,
+    init,
     register,
     login,
     fetchUser,
     logout,
+    hasRole,
+    hasPermission
   }
 })

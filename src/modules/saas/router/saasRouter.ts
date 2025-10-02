@@ -25,7 +25,7 @@ export default [
       layout: 'saas',
       requiresSaasAuth: true,
       title: 'Dashboard - Ronald Bibon',
-      description: 'Dashboard View'
+      description: 'Dashboard View',
     }
   },
   {

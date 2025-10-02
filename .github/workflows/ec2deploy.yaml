@@ -64,13 +64,16 @@ jobs:
             sudo docker stop vue-app || true
             sudo docker rm vue-app || true
 
+            # Clean up unused resources BEFORE running
+            sudo docker system prune -af --volumes
+
             # Run new container
             sudo docker run -d --name vue-app -p 80:80 ${{ env.IMAGE_NAME }}:latest
 
-            # Clean up unused images
+            # Final cleanup just in case
             sudo docker image prune -f
           EOF
-
+          
       - name: 🧹 Cleanup SSH Key
         if: always()
         run: rm -f key.pem

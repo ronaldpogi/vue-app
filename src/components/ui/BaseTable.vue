@@ -33,7 +33,7 @@
           class="text-[13px] py-2 block w-full h-full px-4 pr-8 pl-8 text-gray-700 bg-white border border-gray-400 focus:outline-none"
         />
       </div>
-
+      <Can role="tenant">
       <div class="flex p">
          <BaseButton
             class="w-auto px-3 text-[12px] py-2 font-semibold text-center text-white bg-brand-green focus:outline-none transition-transform hover:scale-110"
@@ -43,6 +43,7 @@
             @click="$emit('rowCreate')"
           />
       </div>
+      </Can>
     </div>
 
     <!-- Table -->
@@ -58,11 +59,13 @@
               >
                 {{ col.label }}
               </th>
-              <th
-                class="px-5 py-3 text-xs font-semibold tracking-wider text-center text-gray-600 uppercase bg-gray-200 border-b-2 border-gray-300"
-              >
-                Actions
-              </th>
+                <th
+                  class="px-5 py-3 text-xs font-semibold tracking-wider text-center text-gray-600 uppercase bg-gray-200 border-b-2 border-gray-300"
+                >
+                <Can role="tenant">
+                  Actions
+                   </Can>
+                </th>
             </tr>
           </thead>
           <tbody>
@@ -97,24 +100,28 @@
                   <!-- <ButtonComponent
                     class="w-auto px-3 py-1 text-sm text-center text-white bg-info focus:outline-none hover:bg-info-hover"
                     label="view"
-                    type="button"
+                    type="button"a
                     :loading="loading"
                     @click="$emit('rowView', row.id)"
                   /> -->
-                  <BaseButton
-                    class="w-auto px-3 py-1 text-[12px] font-semibold text-center text-white bg-brand-accent focus:outline-none transition-transform hover:scale-110"
-                    label="UPDATE"
-                    type="button"
-                    :loading="loading"
-                    @click="$emit('rowUpdate', row.id)"
-                  />
-                  <BaseButton
-                    class="w-auto px-3 py-1 text-[12px] font-semibold text-center text-white bg-brand-red focus:outline-none transition-transform hover:scale-110"
-                    label="DELETE"
-                    type="button"
-                    :loading="loading"
-                    @click="$emit('rowDelete', row.id)"
-                  />
+                  <Can role="tenant">
+                    <BaseButton
+                      class="w-auto px-3 py-1 text-[12px] font-semibold text-center text-white bg-brand-accent focus:outline-none transition-transform hover:scale-110"
+                      label="UPDATE"
+                      type="button"
+                      :loading="loading"
+                      @click="$emit('rowUpdate', row.id)"
+                    />
+                  </Can>
+                  <Can role="tenant">
+                    <BaseButton
+                      class="w-auto px-3 py-1 text-[12px] font-semibold text-center text-white bg-brand-red focus:outline-none transition-transform hover:scale-110"
+                      label="DELETE"
+                      type="button"
+                      :loading="loading"
+                      @click="$emit('rowDelete', row.id)"
+                    />
+                  </Can>
                 </div>
               </td>
             </tr>

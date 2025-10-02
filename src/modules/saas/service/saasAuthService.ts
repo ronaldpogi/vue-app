@@ -15,7 +15,7 @@ export const saasAuthService = {
 
   async fetchUser(): Promise<SaasUserInterface> {
     const { data } = await api.get('saas/me')
-    return data
+    return data.data
   },
 
   async logout() {
